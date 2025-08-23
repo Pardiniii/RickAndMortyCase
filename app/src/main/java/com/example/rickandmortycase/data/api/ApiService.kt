@@ -10,12 +10,16 @@ import retrofit2.http.Query
 
 interface ApiService {
 
+    //forma correta (assincrona)
 //    @GET("character")
 //    fun getCharacters(
 //        @Query("page") page: Int
 //    ): Response<CharacterList>
+//
+//    @GET("character/{id}")
+//    fun getCharacterById(@Path("id")id: Int): Response<CharacterDto>
 
-    //para testes no console
+    //para testes no console de forma sincrona
     @GET("character")
     fun getCharacters(@Query("page") page: Int): Call<CharacterList>
 
