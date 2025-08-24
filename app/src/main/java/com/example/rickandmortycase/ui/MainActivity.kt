@@ -11,8 +11,6 @@ import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
 
-    private val repository = Repository(RetrofitInstance.api)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,25 +20,5 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.fragment_container, CharacterListFragment())
                 .commit()
         }
-
-
-//        val characterId = 754
-//        val page = 5
-
-//        thread {
-//            val characterList = repository.getCharacters(page)
-//            val CharacterSearched = repository.getCharacterById(characterId)
-//
-//            characterList?.let {
-//                characterList.results.forEach{ character ->
-//                    Log.d("CHARACTER", "${character.id} - ${character.copy()}")
-//                }
-//            } ?:Log.e("CHARACTER", "Erro ao buscar personagens")
-//
-//            CharacterSearched?.let {
-//                Log.d("CHARACTER", "${it.id} - ${it.copy()}")
-//            } ?: Log.e("CHARACTER", "Erro ao buscar personagem")
-//        }
-
     }
 }

@@ -3,8 +3,10 @@ package com.example.rickandmortycase.ui.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.rickandmortycase.R
 import com.example.rickandmortycase.databinding.CharacterCardBinding
 import com.example.rickandmortycase.data.model.Character
 
@@ -37,6 +39,11 @@ class CharacterAdapter(
             name.text = character.name
             val status = binding.characterStatusTV
             status.text = character.status
+            when (character.status) {
+                "Alive" -> status.setTextColor(ContextCompat.getColor(status.context, R.color.green))
+                "Dead" -> status.setTextColor(ContextCompat.getColor(status.context, R.color.red))
+                else -> status.setTextColor(ContextCompat.getColor(status.context, R.color.black))
+            }
             val image = binding.characterIMG
             image.load(character.image)
         }
@@ -63,8 +70,4 @@ class CharacterAdapter(
         notifyDataSetChanged()
     }
 
-//    fun updateList(newList: List<Character>) {
-//        this.characters = newList
-//        notifyDataSetChanged()
-//    }
 }

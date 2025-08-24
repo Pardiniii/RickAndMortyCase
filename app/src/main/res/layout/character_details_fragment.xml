@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
+    android:background="@color/light_grey"
+    tools:context=".ui.CharacterDetailsFragment">
+
+    <!-- Imagem do personagem -->
+    <ImageView
+        android:id="@+id/characterImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        android:src="@color/black" />
+
+    <!-- Nome do personagem -->
+    <TextView
+        android:id="@+id/characterName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rick Sanchez"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/characterImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Status -->
+    <TextView
+        android:id="@+id/characterStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alive"
+        android:textColor="@color/black"
+        android:background="@color/green"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/characterName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Local Atual -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detailsBackgoundLocal"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="@id/characterImage"
+        app:layout_constraintEnd_toEndOf="@id/characterImage"
+        app:layout_constraintTop_toBottomOf="@id/characterStatus"
+        android:layout_marginTop="16dp"
+        android:elevation="8dp"
+        android:background="@drawable/card_info_background">
+
+        <ImageView
+            android:id="@+id/locationIMG"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@color/black"
+            app:layout_constraintStart_toStartOf="@id/detailsBackgoundLocal"
+            app:layout_constraintEnd_toStartOf="@id/localAtualTV"
+            app:layout_constraintTop_toTopOf="@id/detailsBackgoundLocal"
+            app:layout_constraintBottom_toBottomOf="@id/detailsBackgoundLocal"
+            android:layout_margin="16dp" />
+
+        <TextView
+            android:id="@+id/localAtualTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Local Atual:"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintStart_toEndOf="@id/locationIMG"
+            app:layout_constraintBottom_toBottomOf="@id/detailsBackgoundLocal"
+            app:layout_constraintTop_toTopOf="@id/detailsBackgoundLocal"/>
+
+        <TextView
+            android:id="@+id/locationTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Citadel of ricks"
+            android:textColor="@color/black"
+            android:layout_marginEnd="16dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@id/detailsBackgoundLocal"
+            app:layout_constraintTop_toTopOf="@id/detailsBackgoundLocal"
+            app:layout_constraintBottom_toBottomOf="@id/detailsBackgoundLocal"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Origem -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detailsBackgoundOrigin"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="@id/characterImage"
+        app:layout_constraintEnd_toEndOf="@id/characterImage"
+        app:layout_constraintTop_toBottomOf="@id/detailsBackgoundLocal"
+        android:layout_marginTop="16dp"
+        android:elevation="8dp"
+        android:background="@drawable/card_info_background">
+
+        <ImageView
+            android:id="@+id/originIMG"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@color/black"
+            app:layout_constraintStart_toStartOf="@id/detailsBackgoundOrigin"
+            app:layout_constraintEnd_toStartOf="@id/originTV"
+            app:layout_constraintTop_toTopOf="@id/detailsBackgoundOrigin"
+            app:layout_constraintBottom_toBottomOf="@id/detailsBackgoundOrigin"
+            android:layout_margin="16dp" />
+
+        <TextView
+            android:id="@+id/originTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Origem:"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintStart_toEndOf="@id/originIMG"
+            app:layout_constraintBottom_toBottomOf="@id/detailsBackgoundOrigin"
+            app:layout_constraintTop_toTopOf="@id/detailsBackgoundOrigin"/>
+
+        <TextView
+            android:id="@+id/originOfcTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Terra"
+            android:textColor="@color/black"
+            android:layout_marginEnd="16dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@id/detailsBackgoundOrigin"
+            app:layout_constraintTop_toTopOf="@id/detailsBackgoundOrigin"
+            app:layout_constraintBottom_toBottomOf="@id/detailsBackgoundOrigin"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Gênero -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detailsBackgoundGender"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="@id/characterImage"
+        app:layout_constraintEnd_toEndOf="@id/characterImage"
+        app:layout_constraintTop_toBottomOf="@id/detailsBackgoundOrigin"
+        android:layout_marginTop="16dp"
+        android:elevation="8dp"
+        android:background="@drawable/card_info_background">
+
+        <ImageView
+            android:id="@+id/genderIMG"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@color/black"
+            app:layout_constraintStart_toStartOf="@id/detailsBackgoundGender"
+            app:layout_constraintEnd_toStartOf="@id/genderTV"
+            app:layout_constraintTop_toTopOf="@id/detailsBackgoundGender"
+            app:layout_constraintBottom_toBottomOf="@id/detailsBackgoundGender"
+            android:layout_margin="16dp" />
+
+        <TextView
+            android:id="@+id/genderTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gênero:"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintStart_toEndOf="@id/genderIMG"
+            app:layout_constraintBottom_toBottomOf="@id/detailsBackgoundGender"
+            app:layout_constraintTop_toTopOf="@id/detailsBackgoundGender"/>
+
+        <TextView
+            android:id="@+id/genderOfcTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Masculino"
+            android:textColor="@color/black"
+            android:layout_marginEnd="16dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@id/detailsBackgoundGender"
+            app:layout_constraintTop_toTopOf="@id/detailsBackgoundGender"
+            app:layout_constraintBottom_toBottomOf="@id/detailsBackgoundGender"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Espécie -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detailsBackgoundSpecies"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="@id/characterImage"
+        app:layout_constraintEnd_toEndOf="@id/characterImage"
+        app:layout_constraintTop_toBottomOf="@id/detailsBackgoundGender"
+        android:layout_marginTop="16dp"
+        android:elevation="8dp"
+        android:background="@drawable/card_info_background">
+
+        <ImageView
+            android:id="@+id/speciesIMG"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@color/black"
+            app:layout_constraintStart_toStartOf="@id/detailsBackgoundSpecies"
+            app:layout_constraintEnd_toStartOf="@id/speciesTV"
+            app:layout_constraintTop_toTopOf="@id/detailsBackgoundSpecies"
+            app:layout_constraintBottom_toBottomOf="@id/detailsBackgoundSpecies"
+            android:layout_margin="16dp" />
+
+        <TextView
+            android:id="@+id/speciesTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Espécie:"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintStart_toEndOf="@id/speciesIMG"
+            app:layout_constraintBottom_toBottomOf="@id/detailsBackgoundSpecies"
+            app:layout_constraintTop_toTopOf="@id/detailsBackgoundSpecies"/>
+
+        <TextView
+            android:id="@+id/speciesOfcTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Humano"
+            android:textColor="@color/black"
+            android:layout_marginEnd="16dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@id/detailsBackgoundSpecies"
+            app:layout_constraintTop_toTopOf="@id/detailsBackgoundSpecies"
+            app:layout_constraintBottom_toBottomOf="@id/detailsBackgoundSpecies"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
