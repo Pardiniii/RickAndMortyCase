@@ -15,12 +15,12 @@ data class InfoDto(
 )
 
 //data class Origin(
-//    val name: String,
-//    val url: String
+//    val name: String?,
+//    val url: String?
 //)
 //data class Location(
-//    val name: String,
-//    val url: String
+//    val name: String?,
+//    val url: String?
 //)
 
 data class CharacterDto(
@@ -33,16 +33,17 @@ data class CharacterDto(
 //    val origin: Origin,
 //    val location: Location,
     val episode: List<String>
-) {
-    fun toDomain() = Character(
-        id = this.id,
-        name = this.name,
-        status = this.status,
-        species = this.species,
-        image = this.image,
-        gender = this.gender,
-//        origin = origin.name,
-//        location = location.name,
-        episode = this.episode
-    )
-}
+)
+
+fun CharacterDto.toDomain() = Character(
+    id = this.id,
+    name = this.name,
+    status = this.status,
+    species = this.species,
+    image = this.image,
+    gender = this.gender,
+//    origin = this.origin.name?: "",
+//    location = this.location.name?: "",
+    episode = this.episode
+)
+
