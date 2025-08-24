@@ -10,8 +10,8 @@ data class CharactersResponseDto(
 data class InfoDto(
     val count: Int,
     val pages: Int,
-    val next: String?,
-    val prev: String?
+    val next: String,
+    val prev: String
 )
 
 //data class Origin(

@@ -9,6 +9,8 @@ class CharacterViewModelFactory(
     private val repository: Repository
 ) : ViewModelProvider.Factory {
 
+
+    //valida se o repository foi instanciado antes da viewmodel
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(CharacterViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
