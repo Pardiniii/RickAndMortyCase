@@ -16,7 +16,12 @@ class CharacterViewModel(private val repository: CharacterRepository) : ViewMode
     private val _totalPages = MutableLiveData<Int>()
     val totalPages: LiveData<Int> = _totalPages
 
+    private val _currentPage = MutableLiveData<Int>()
+    val currentPage: LiveData<Int> = _currentPage
+
     fun fetchCharacters(page: Int ){
+        _currentPage.value = page
+
         viewModelScope.launch {
             try {
                 val response = repository.getCharacters(page)

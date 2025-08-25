@@ -74,6 +74,10 @@ class CharacterListFragment : Fragment(R.layout.fragment_rick_and_morty_home) {
                 viewModel.fetchCharacters(page)
             }
             setUpNavBarAdapter(navAdapter)
+
+            viewModel.currentPage.observe(viewLifecycleOwner){ current ->
+                navAdapter.setSelectedPage(current)
+            }
         }
 
         viewModel.characters.observe(viewLifecycleOwner) { list ->
