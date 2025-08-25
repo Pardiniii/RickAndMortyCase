@@ -3,6 +3,7 @@ package com.example.rickandmortycase.ui.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -39,13 +40,20 @@ class CharacterAdapter(
             name.text = character.name
             val status = binding.characterStatusTV
             status.text = character.status
+            setColorByStatus(character, status)
+            val image = binding.characterIMG
+            image.load(character.image)
+        }
+
+        private fun setColorByStatus(
+            character: Character,
+            status: TextView
+        ) {
             when (character.status) {
                 "Alive" -> status.setTextColor(ContextCompat.getColor(status.context, R.color.green))
                 "Dead" -> status.setTextColor(ContextCompat.getColor(status.context, R.color.red))
                 else -> status.setTextColor(ContextCompat.getColor(status.context, R.color.black))
             }
-            val image = binding.characterIMG
-            image.load(character.image)
         }
     }
 
