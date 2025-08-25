@@ -1,10 +1,11 @@
 package com.example.rickandmortycase.ui
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickandmortycase.data.model.Character
+import com.example.rickandmortycase.domain.Character
 import com.example.rickandmortycase.data.repository.Repository
 import kotlinx.coroutines.launch
 
@@ -30,6 +31,7 @@ class CharacterViewModel(private val repository: Repository) : ViewModel(){
                     _characters.postValue(emptyList())
                 }
             }catch (e: Exception){
+                Log.i("DEBUGAAA", e.toString())
                 e.printStackTrace()
                 _characters.postValue(emptyList())
             }

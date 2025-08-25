@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.rickandmortycase.R
 import com.example.rickandmortycase.databinding.CharacterCardBinding
-import com.example.rickandmortycase.data.model.Character
+import com.example.rickandmortycase.domain.Character
 
 
 class CharacterAdapter(

@@ -22,7 +22,6 @@ import com.example.rickandmortycase.ui.adapter.NavigationAdapter
 
 class CharacterListFragment : Fragment(R.layout.fragment_rick_and_morty_home) {
 
-    private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: CharacterAdapter
     lateinit var binding: FragmentRickAndMortyHomeBinding
     private val repository = Repository(RetrofitInstance.api)
@@ -65,11 +64,22 @@ class CharacterListFragment : Fragment(R.layout.fragment_rick_and_morty_home) {
             adapter.refresh(list)
         }
 
-        adapter.whenItenClicked = {
-            Toast.makeText(requireContext(), "personagem ${it.name} clicado", Toast.LENGTH_SHORT).show()
+        adapter.whenItenClicked = { character ->
+            val fragment = CharacterDetailsFragment().apply {
+                arguments = Bundle().apply {
+                    putString("name", character.name)
+                    putString("status", character.status)
+                    putString("imageUrl", character.image)
+                    putString("origin", character.origin?.name)
+                    putString("location", character.location?.name)
+                    putString("gender", character.gender)
+                    putString("species", character.species)
+                }
+            }
+
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, CharacterDetailsFragment())
-                .addToBackStack(null) // se quiser voltar
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
                 .commit()
         }
 
