@@ -37,6 +37,12 @@ class CharacterDetailsFragment : Fragment(R.layout.character_details_fragment) {
             speciesOfcTV.text = species
             characterImage.load(imageUrl)
 
+            when (gender?.lowercase()) {
+                "male" -> genderIMG.setImageResource(R.drawable.maleicon)
+                "female" -> genderIMG.setImageResource(R.drawable.femaleicon)
+                else -> genderIMG.setImageResource(R.drawable.geneticsicon)
+            }
+
             val bgDrawable = binding.statusBackground.background.mutate()
             when (binding.characterStatus.text.toString()) {
                 "Alive" -> bgDrawable.setTint(requireContext().getColor(R.color.green))
