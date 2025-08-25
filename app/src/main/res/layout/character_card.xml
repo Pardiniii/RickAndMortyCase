@@ -4,45 +4,45 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/characterIMG"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:src="@color/cardview_dark_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/characterNameTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rick"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/characterStatusTV"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/characterIMG" />
+        <ImageView
+            android:id="@+id/characterIMG"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="centerCrop"
+            android:src="@color/cardview_dark_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/characterStatusTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Alive"
-        android:textColor="@color/teal_700"
-        app:layout_constraintBottom_toBottomOf="@+id/characterNameTV"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/characterNameTV"
-        app:layout_constraintTop_toBottomOf="@id/characterIMG" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/characterNameTV"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:text="Rick"
+            android:layout_marginStart="8dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/characterIMG" />
 
-
-
+        <TextView
+            android:id="@+id/characterStatusTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alive"
+            android:textColor="@color/teal_700"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/characterNameTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/characterIMG" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </LinearLayout>
