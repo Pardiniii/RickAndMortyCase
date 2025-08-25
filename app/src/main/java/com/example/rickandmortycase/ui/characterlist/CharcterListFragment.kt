@@ -2,27 +2,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmortycase.R
 import com.example.rickandmortycase.data.repository.CharacterRepositoryImpl
 import com.example.rickandmortycase.databinding.FragmentRickAndMortyHomeBinding
 import com.example.rickandmortycase.di.CharacterViewModelFactory
-import com.example.rickandmortycase.ui.characterdetails.CharacterDetailsFragment
 import com.example.rickandmortycase.ui.CharacterViewModel
 import com.example.rickandmortycase.ui.adapter.CharacterAdapter
 import com.example.rickandmortycase.ui.adapter.NavigationAdapter
+import com.example.rickandmortycase.ui.characterdetails.CharacterDetailsFragment
 
 class CharacterListFragment : Fragment(R.layout.fragment_rick_and_morty_home) {
 
     private lateinit var adapter: CharacterAdapter
+    private lateinit var navAdapter: NavigationAdapter
     lateinit var binding: FragmentRickAndMortyHomeBinding
     private val repository = CharacterRepositoryImpl()
     val startPage = 1
-    private val viewModel by viewModels<CharacterViewModel> {
+    private val viewModel by activityViewModels<CharacterViewModel> {
         CharacterViewModelFactory(repository)
     }
 
@@ -42,7 +42,9 @@ class CharacterListFragment : Fragment(R.layout.fragment_rick_and_morty_home) {
         setUpObserver()
         goToCharacterDetails()
 
-        viewModel.fetchCharacters(startPage)
+        if (viewModel.characters.value.isNullOrEmpty()) {
+            viewModel.fetchCharacters(viewModel.currentPage.value ?: startPage)
+        }
     }
 
     private fun goToCharacterDetails() {
@@ -60,35 +62,41 @@ class CharacterListFragment : Fragment(R.layout.fragment_rick_and_morty_home) {
             }
 
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment)
+                .add(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit()
         }
     }
 
     private fun setUpObserver() {
-        viewModel.totalPages.observe(viewLifecycleOwner) { pages ->
-            val pages = (startPage..pages).toList()
-            val navAdapter = NavigationAdapter(pages) { page ->
-                Toast.makeText(requireContext(), "Pagina $page clicada", Toast.LENGTH_SHORT).show()
-                viewModel.fetchCharacters(page)
-            }
-            setUpNavBarAdapter(navAdapter)
+        viewModel.totalPages.observe(viewLifecycleOwner) { total ->
+            val pages = (startPage..total).toList()
+            setUpNavBar(pages)
+        }
 
-            viewModel.currentPage.observe(viewLifecycleOwner){ current ->
+        viewModel.currentPage.observe(viewLifecycleOwner) { current ->
+            if (::navAdapter.isInitialized) {
                 navAdapter.setSelectedPage(current)
             }
         }
 
         viewModel.characters.observe(viewLifecycleOwner) { list ->
             adapter.refresh(list)
+            binding.characterListRV.smoothScrollToPosition(0)
         }
     }
 
-    private fun setUpNavBarAdapter(navAdapter: NavigationAdapter) {
-        binding.recyclerNavigation.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.recyclerNavigation.adapter = navAdapter
+    private fun setUpNavBar(pages: List<Int>) {
+        if (!::navAdapter.isInitialized) {
+            navAdapter = NavigationAdapter(pages) { page ->
+                viewModel.fetchCharacters(page)
+            }
+            binding.recyclerNavigation.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            binding.recyclerNavigation.adapter = navAdapter
+        } else {
+            navAdapter.updatePages(pages)
+        }
     }
 
     private fun setUpCharacterAdapter() {
