@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@drawable/card_info_background"
+        android:background="@drawable/card_status_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/characterName">
@@ -84,9 +84,9 @@
 
         <TextView
             android:id="@+id/localAtualTV"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="8dp"
             android:text="Local Atual:"
             android:textColor="@color/black"
             android:textSize="18sp"
@@ -96,15 +96,20 @@
 
         <TextView
             android:id="@+id/locationTV"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:singleLine="true"
             android:text="terra"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@id/detailsBackgoundLocal"
             app:layout_constraintEnd_toEndOf="@id/detailsBackgoundLocal"
+            app:layout_constraintStart_toEndOf="@id/localAtualTV"
             app:layout_constraintTop_toTopOf="@id/detailsBackgoundLocal" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -143,15 +148,20 @@
 
         <TextView
             android:id="@+id/originOfcTV"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:singleLine="true"
             android:text="Terra"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@id/detailsBackgoundOrigin"
             app:layout_constraintEnd_toEndOf="@id/detailsBackgoundOrigin"
+            app:layout_constraintStart_toEndOf="@+id/originTV"
             app:layout_constraintTop_toTopOf="@id/detailsBackgoundOrigin" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -199,6 +209,7 @@
             app:layout_constraintBottom_toBottomOf="@id/detailsBackgoundGender"
             app:layout_constraintEnd_toEndOf="@id/detailsBackgoundGender"
             app:layout_constraintTop_toTopOf="@id/detailsBackgoundGender" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -17,17 +17,6 @@ class CharacterDetailsFragment : Fragment(R.layout.character_details_fragment) {
         _binding = CharacterDetailsFragmentBinding.bind(view)
 
         setUpView()
-        when (binding.characterStatus.text.toString()) {
-            "Alive" -> binding.statusBackground.setBackgroundColor(
-                requireContext().getColor(R.color.green)
-            )
-            "Dead" -> binding.statusBackground.setBackgroundColor(
-                requireContext().getColor(R.color.red)
-            )
-            else -> binding.statusBackground.setBackgroundColor(
-                requireContext().getColor(R.color.white)
-            )
-        }
     }
 
     private fun setUpView() {
@@ -47,6 +36,14 @@ class CharacterDetailsFragment : Fragment(R.layout.character_details_fragment) {
             genderOfcTV.text = gender
             speciesOfcTV.text = species
             characterImage.load(imageUrl)
+
+            val bgDrawable = binding.statusBackground.background.mutate()
+            when (binding.characterStatus.text.toString()) {
+                "Alive" -> bgDrawable.setTint(requireContext().getColor(R.color.green))
+                "Dead" -> bgDrawable.setTint(requireContext().getColor(R.color.red))
+                else -> bgDrawable.setTint(requireContext().getColor(R.color.white))
+            }
+            binding.statusBackground.background = bgDrawable
         }
     }
 }
