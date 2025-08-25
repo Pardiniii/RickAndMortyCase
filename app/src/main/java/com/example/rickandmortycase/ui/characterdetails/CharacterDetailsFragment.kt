@@ -8,11 +8,13 @@ import com.example.rickandmortycase.R
 import com.example.rickandmortycase.databinding.CharacterDetailsFragmentBinding
 
 class CharacterDetailsFragment : Fragment(R.layout.character_details_fragment) {
+    private lateinit var _binding: CharacterDetailsFragmentBinding
+    val binding get() = _binding
 
-    lateinit var _binding: CharacterDetailsFragmentBinding
-    private val binding get() = _binding
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
         _binding = CharacterDetailsFragmentBinding.bind(view)
 
@@ -28,7 +30,7 @@ class CharacterDetailsFragment : Fragment(R.layout.character_details_fragment) {
         val gender = arguments?.getString("gender")
         val species = arguments?.getString("species")
 
-        with(binding){
+        with(binding) {
             characterName.text = name
             characterStatus.text = status
             originOfcTV.text = origin

@@ -6,5 +6,4 @@ import retrofit2.Response
 
 interface CharacterRepository {
     suspend fun getCharacters(page: Int): Response<CharacterList>
-
 }

@@ -8,8 +8,9 @@ import com.example.rickandmortycase.data.repository.CharacterRepository
 import com.example.rickandmortycase.domain.Character
 import kotlinx.coroutines.launch
 
-class CharacterViewModel(private val repository: CharacterRepository) : ViewModel(){
-
+class CharacterViewModel(
+    private val repository: CharacterRepository,
+) : ViewModel() {
     private val _characters = MutableLiveData<List<Character>>()
     val characters: LiveData<List<Character>> = _characters
 
@@ -19,22 +20,22 @@ class CharacterViewModel(private val repository: CharacterRepository) : ViewMode
     private val _currentPage = MutableLiveData<Int>()
     val currentPage: LiveData<Int> = _currentPage
 
-    fun fetchCharacters(page: Int ){
+    fun fetchCharacters(page: Int) {
         _currentPage.value = page
 
         viewModelScope.launch {
             try {
                 val response = repository.getCharacters(page)
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
                     val body = response.body()
                     val characters = body?.results ?: emptyList()
                     _characters.postValue(characters)
 
                     _totalPages.postValue(body?.info?.pages)
-                }else{
+                } else {
                     _characters.postValue(emptyList())
                 }
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
                 _characters.postValue(emptyList())
             }

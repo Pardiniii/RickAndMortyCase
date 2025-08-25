@@ -9,15 +9,15 @@ data class Character(
     val gender: String?,
     val origin: Origin?,
     val location: Location?,
-    val episode: List<String>?
+    val episode: List<String>?,
 )
 
 data class Origin(
     val name: String?,
-    val url: String?
+    val url: String?,
 )
 
 data class Location(
     val name: String?,
-    val url: String?
+    val url: String?,
 )

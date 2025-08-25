@@ -4,5 +4,5 @@ import com.example.rickandmortycase.domain.Character
 
 data class CharacterList(
     var results: List<Character>,
-    var info: InfoResponse
+    var info: InfoResponse,
 )

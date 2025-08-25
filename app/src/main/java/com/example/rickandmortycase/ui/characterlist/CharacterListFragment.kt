@@ -16,7 +16,6 @@ import com.example.rickandmortycase.ui.adapter.NavigationAdapter
 import com.example.rickandmortycase.ui.characterdetails.CharacterDetailsFragment
 
 class CharacterListFragment : Fragment(R.layout.fragment_rick_and_morty_home) {
-
     private lateinit var adapter: CharacterAdapter
     private lateinit var navAdapter: NavigationAdapter
     lateinit var binding: FragmentRickAndMortyHomeBinding
@@ -29,13 +28,16 @@ class CharacterListFragment : Fragment(R.layout.fragment_rick_and_morty_home) {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentRickAndMortyHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         setUpCharacterAdapter()
@@ -49,19 +51,23 @@ class CharacterListFragment : Fragment(R.layout.fragment_rick_and_morty_home) {
 
     private fun goToCharacterDetails() {
         adapter.whenItenClicked = { character ->
-            val fragment = CharacterDetailsFragment().apply {
-                arguments = Bundle().apply {
-                    putString("name", character.name)
-                    putString("status", character.status)
-                    putString("imageUrl", character.image)
-                    putString("origin", character.origin?.name)
-                    putString("location", character.location?.name)
-                    putString("gender", character.gender)
-                    putString("species", character.species)
+            val fragment =
+                CharacterDetailsFragment().apply {
+                    arguments =
+                        Bundle().apply {
+                            putString("name", character.name)
+                            putString("status", character.status)
+                            putString("imageUrl", character.image)
+                            putString("origin", character.origin?.name)
+                            putString("location", character.location?.name)
+                            putString("gender", character.gender)
+                            putString("species", character.species)
+                        }
                 }
-            }
 
-            requireActivity().supportFragmentManager.beginTransaction()
+            requireActivity()
+                .supportFragmentManager
+                .beginTransaction()
                 .add(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit()
@@ -88,9 +94,10 @@ class CharacterListFragment : Fragment(R.layout.fragment_rick_and_morty_home) {
 
     private fun setUpNavBar(pages: List<Int>) {
         if (!::navAdapter.isInitialized) {
-            navAdapter = NavigationAdapter(pages) { page ->
-                viewModel.fetchCharacters(page)
-            }
+            navAdapter =
+                NavigationAdapter(pages) { page ->
+                    viewModel.fetchCharacters(page)
+                }
             binding.recyclerNavigation.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.recyclerNavigation.adapter = navAdapter

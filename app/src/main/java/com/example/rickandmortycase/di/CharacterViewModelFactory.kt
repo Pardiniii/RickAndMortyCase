@@ -6,9 +6,8 @@ import com.example.rickandmortycase.data.repository.CharacterRepository
 import com.example.rickandmortycase.ui.CharacterViewModel
 
 class CharacterViewModelFactory(
-    private val repository: CharacterRepository
+    private val repository: CharacterRepository,
 ) : ViewModelProvider.Factory {
-
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(CharacterViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")

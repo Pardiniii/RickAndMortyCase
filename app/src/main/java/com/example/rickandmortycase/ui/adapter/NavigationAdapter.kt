@@ -10,27 +10,12 @@ import com.example.rickandmortycase.R
 
 class NavigationAdapter(
     private var pages: List<Int>,
-    private val onClick: (Int) -> Unit
+    private val onClick: (Int) -> Unit,
 ) : RecyclerView.Adapter<NavigationAdapter.NavViewHolder>() {
+    private var selectedPage: Int? = -1
 
-    private var selectedPage: Int? = -1  //null
-
-//    fun setSelectedPage(page: Int, recyclerView: RecyclerView? = null) {
-//        val oldPage = selectedPage
-//        selectedPage = page
-//        if (oldPage != null) {
-//            notifyItemChanged(oldPage)
-//        }
-//        notifyItemChanged(selectedPage!!)
-//
-//        recyclerView?.post {
-//            val pos = pages.indexOf(page)
-//            if (pos != -1) recyclerView.scrollToPosition(pos)
-//        }
-//    }
-
-    fun setSelectedPage(page: Int){
-        val oldIndex = pages.indexOf(selectedPage) // pega índice da página anterior
+    fun setSelectedPage(page: Int) {
+        val oldIndex = pages.indexOf(selectedPage)
         selectedPage = page
         val newIndex = pages.indexOf(page)
 
@@ -43,8 +28,13 @@ class NavigationAdapter(
         notifyDataSetChanged()
     }
 
-    inner class NavViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvPage: TextView = itemView.findViewById(R.id.tvPageNumber)
+    inner class NavViewHolder(
+        itemView: View,
+    ) : RecyclerView.ViewHolder(itemView) {
+        val tvPage: TextView =
+            itemView.findViewById(
+                R.id.tvPageNumber,
+            )
 
         fun bind(page: Int) {
             tvPage.text = page.toString()
@@ -59,13 +49,21 @@ class NavigationAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NavViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_navigation, parent, false)
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): NavViewHolder {
+        val view =
+            LayoutInflater
+                .from(parent.context)
+                .inflate(R.layout.item_navigation, parent, false)
         return NavViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: NavViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: NavViewHolder,
+        position: Int,
+    ) {
         holder.bind(pages[position])
         val page = pages[position]
         holder.tvPage.text = page.toString()
